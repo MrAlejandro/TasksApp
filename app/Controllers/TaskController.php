@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Model;
+
 class TaskController extends Controller
 {
     public function index()

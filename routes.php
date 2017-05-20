@@ -1,25 +1,26 @@
 <?php
 
-namespace AppRoures;
+namespace AppRoutes;
 
 use FastRoute;
 
-$dispatch_callback = function($vars, $controller, $action) use ($container)
+function dispatch_callback($vars, $controller, $action)
 {
     $controller = "\\App\\Controllers\\{$controller}";
 
     if (class_exists($controller, true)) {
-        $controller = $container->get('App\\Controllers\\TaskController');
-        $controller->$action($vars);
+        $container = \App\Model::getDIContainer();
+        $controller = $container->get($controller);
+        $controller->$action($vars, $controller);
     } else {
         // TODO: implement 404 logic
     }
-};
+}
 
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) use ($dispatch_callback) {
-    $r->addRoute('GET', '/', function ($vars) use ($dispatch_callback) {
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+    $r->addRoute('GET', '/', function ($vars) {
         $args = [$vars, 'TaskController', 'index'];
-        call_user_func_array($dispatch_callback, $args);
+        call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
     $r->addRoute('GET', '/tasks', function () { var_dump(func_get_args());  });
     $r->addRoute('GET', '/task/{id:\d+}', function () { var_dump(func_get_args());  });
