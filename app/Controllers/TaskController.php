@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class TaskController
+class TaskController extends Controller
 {
     public function index()
     {
-        echo 'test';
+        $this->view->display('index.tpl');
     }
 }
