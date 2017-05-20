@@ -17,3 +17,6 @@ Apache settings
 
 /ect/hosts
 127.0.0.1       tasks.local www.tasks.local
+
+chmod -R 777 var
+
