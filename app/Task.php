@@ -2,6 +2,6 @@
 
 namespace App;
 
-class TaskRepository
+class Task
 {
 }

@@ -9,9 +9,13 @@ function dispatch_callback($vars, $controller, $action)
     $controller = "\\App\\Controllers\\{$controller}";
 
     if (class_exists($controller, true)) {
-        $container = \App\Model::getDIContainer();
-        $controller = $container->get($controller);
-        $controller->$action($vars, $controller);
+        try {
+            $container = \App\Model::getDIContainer();
+            $controller = $container->get($controller);
+            $controller->$action($vars, $controller);
+        } catch (\DI\NotFoundException $e) {
+            // TODO: implement error handling logic
+        }
     } else {
         // TODO: implement 404 logic
     }

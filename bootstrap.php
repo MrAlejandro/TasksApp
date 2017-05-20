@@ -1,13 +1,16 @@
 <?php
 
 // autoloaders
-$loader = require_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'vendor', 'autoload.php']);
-$loader->addPsr4('App\\', __DIR__ . '/app');
-$loader->addPsr4('App\\Controllers\\', __DIR__ . '/app/Controllers');
+$loader = require_once(__DIR__ . '/vendor/autoload.php');
 
-// DI handling
-/* $container = DI\ContainerBuilder::buildDevContainer(); */
-/* var_dump(App\Model::getDIContainer()); */
-/* die; */
+$autoloadMap = require_once(__DIR__ . '/autoload_map.php');
+$classesMap = require_once(__DIR__ . '/classes_map.php');
+
+foreach ($autoloadMap as $namespace => $path) {
+    $loader->addPsr4($namespace, __DIR__ . $path);
+}
+
+$container = App\Model::getDIContainer();
+$container->set('classes_map', $classesMap);
 
 require_once 'routes.php';
