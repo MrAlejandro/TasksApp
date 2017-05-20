@@ -1,9 +1,17 @@
 <?php
 
+namespace AppRoures;
+
+use FastRoute;
+
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '', function () { var_dump(func_get_args()); });
+    $r->addRoute('GET', '/', function ($vars) {
+        $args = [$vars, 'TaskController', 'index'];
+        call_user_func_array('AppRoures\dispatch', $args);
+    });
     $r->addRoute('GET', '/tasks', function () { var_dump(func_get_args());  });
     $r->addRoute('GET', '/task/{id:\d+}', function () { var_dump(func_get_args());  });
+
     /* $r->addRoute('GET', '/tasks', function () { var_dump(func_get_args()); }); */
     // {id} must be a number (\d+)
     /* $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler'); */
@@ -39,3 +47,15 @@ switch ($routeInfo[0]) {
         // ... call $handler with $vars
         break;
 }
+
+function dispatch($vars, $controller, $action)
+{
+    $controller = "\\App\\Controllers\\{$controller}";
+
+    if (class_exists($controller, true)) {
+        (new $controller)->$action($vars);
+    } else {
+        // TODO: implement 404 logic
+    }
+}
+
