@@ -44,16 +44,17 @@ class Controller
 
     protected function render($templateName = '')
     {
+        $assignData = ['view' => $this->view];
+
         if (empty($templateName)) {
             $templateName = $this->getDefaultTemplateName();
         }
 
         if ($this->view->templateExists($templateName)) {
-            $this->view->assign('render_template', $templateName);
+            $assignData['render_template'] = $templateName;
         }
 
-        $this->view->assign('view', $this->view);
-
+        $this->view->assign($assignData);
         $this->view->display('index.tpl');
     }
 

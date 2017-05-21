@@ -8,12 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">{__("tasks_board")}</a>
+            <a class="navbar-brand" href="{$view->url("")}">{__("tasks_board")}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">{__("crate_new_task")}</a></li>
-                <li><a href="#">{__("tasks_list")}</a></li>
+                <li><a href="{$view->url("task/create")}">{__("crate_new_task")}</a></li>
+                <li><a href="{$view->url("")}">{__("tasks_list")}</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->

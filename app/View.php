@@ -2,6 +2,7 @@
 namespace App;
 
 use Smarty;
+use App\Model;
 
 final class View extends Smarty
 {
@@ -22,6 +23,28 @@ final class View extends Smarty
     {
         // TODO: implement translation logic if required
         return $text;
+    }
+
+    public function url($uri = '')
+    {
+        static $protocol = null;
+        static $domain = null;
+
+        if (null === $domain) {
+            $config = Model::getDIContainer()->get('config');
+
+            if (!empty($config['web']['domain'])) {
+                $protocol = !empty($config['web']['protocol']) ? $config['web']['protocol'] : 'http';
+                $domain = $config['web']['domain'];
+            } else {
+                throw new RuntimeException('Domain name in config is empty');
+            }
+        }
+
+        $uri = trim($uri, '/ ');
+        $uri = $uri ? "/$uri" : '';
+
+        return sprintf('%s://%s%s', $protocol, $domain, $uri);
     }
 
     private function init()

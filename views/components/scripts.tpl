@@ -7,5 +7,5 @@
     crossorigin="anonymous"></script>
 
 <!-- TODO: implement url retrieving functionality -->
-<script src="http://tasks.local/scripts/task_tags.js"></script>
+<script src="{$view->url("scripts/task_tags.js")}"></script>
 
