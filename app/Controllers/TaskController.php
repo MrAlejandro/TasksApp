@@ -5,16 +5,18 @@ use App\Model;
 
 class TaskController extends Controller
 {
+    protected $templatesDir = 'task';
+
     public function index()
     {
-        $task = Model::instance('task');
+        /*$task = Model::instance('task');
         var_dump($task);
-        die;
+        die;*/
 
         $this->view->assign([
             'page_title' => 'My page',
         ]);
 
-        $this->view->display('index.tpl');
+        $this->render();
     }
 }

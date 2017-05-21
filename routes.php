@@ -4,15 +4,23 @@ namespace AppRoutes;
 
 use FastRoute;
 
-function dispatch_callback($vars, $controller, $action)
+function dispatch_callback($vars, $controllerName, $action)
 {
-    $controller = "\\App\\Controllers\\{$controller}";
+    $controllerFullName = "\\App\\Controllers\\{$controllerName}";
 
-    if (class_exists($controller, true)) {
+    if (class_exists($controllerFullName, true)) {
         try {
             $container = \App\Model::getDIContainer();
-            $controller = $container->get($controller);
-            $controller->$action($vars, $controller);
+            $container->set('controller', $controllerName);
+            $container->set('action', $action);
+
+            $controller = $container->get($controllerFullName);
+            $controller->setControllerName($controllerName);
+            $controller->setActionName($action);
+
+            call_user_func_array([$controller, $action], $vars);
+
+            exit;
         } catch (\DI\NotFoundException $e) {
             // TODO: implement error handling logic
         }

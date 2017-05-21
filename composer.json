@@ -3,6 +3,7 @@
         "nikic/fast-route": "^1.2",
         "smarty/smarty": "^3.1",
         "php-di/php-di": "^5.4",
-        "ramsey/uuid": "^3.6"
+        "ramsey/uuid": "^3.6",
+        "gettext/gettext": "^4.4"
     }
 }
