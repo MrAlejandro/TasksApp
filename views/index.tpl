@@ -11,5 +11,7 @@
 
             {include file="components/footer.tpl"}
         <div class="container">
+
+        {include file="components/scripts.tpl"}
     </body>
-    </html>
+</html>

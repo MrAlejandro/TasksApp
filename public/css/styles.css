@@ -1,0 +1,20 @@
+.task__tag-content {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.task__tags-containner .glyphicon-tags {
+    positon: relative;
+    right: -3px;
+    top: 15px
+}
+
+.task__tags-containner .glyphicon-remove-sign {
+    cursor: pointer;
+}
+
+.task__tags-containner {
+    display: inline-block;
+    margin: 0 10px 20px 0px;
+}
