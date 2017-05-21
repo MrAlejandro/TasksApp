@@ -18,3 +18,7 @@
     display: inline-block;
     margin: 0 10px 20px 0px;
 }
+
+#tags_container {
+    margin-bottom: 20px;
+}
