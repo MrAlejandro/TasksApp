@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Task;
 
 class Task
 {
-    protected $uuid,
-        $name,
-        $priority,
-        $staus;
+    protected $id;
+    protected $uuid;
+    protected $name;
+    protected $priority;
+    protected $status;
 
     protected $tags = [];
 

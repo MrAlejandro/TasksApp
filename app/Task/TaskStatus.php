@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Task;
 
 class TaskStatus
@@ -36,7 +35,7 @@ class TaskStatus
 
     public function getList()
     {
-        return $this->priorities;
+        return $this->statuses;
     }
 }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Task;
 
 class TaskId
@@ -27,7 +26,7 @@ class TaskId
 
     public function get()
     {
-        return $this->id;
+        return $this->uuid;
     }
 
     protected function validate($uuid = '')

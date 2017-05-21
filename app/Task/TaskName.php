@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Task;
 
 class TaskName
@@ -10,7 +9,8 @@ class TaskName
     {
         $result = false;
 
-        if (null === $this->name
+        if (
+            null === $this->name
             && !empty($name)
             && $this->validate($name)
         ) {
