@@ -50,7 +50,6 @@ class Model
     public static function getDIContainer()
     {
         if (null === self::$container) {
-            var_dump(get_class($container));
             self::$container = $container;
         }
 
