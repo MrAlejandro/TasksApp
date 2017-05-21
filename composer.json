@@ -4,6 +4,7 @@
         "smarty/smarty": "^3.1",
         "php-di/php-di": "^5.4",
         "ramsey/uuid": "^3.6",
-        "gettext/gettext": "^4.4"
+        "gettext/gettext": "^4.4",
+        "eden/mysql": "^4.0"
     }
 }

@@ -1,0 +1,11 @@
+<?php
+
+return [
+    'db' => [
+    ],
+    'web' => [
+        'protocol' => 'http',
+        'domain' => 'example.com',
+    ],
+];
+

@@ -50,9 +50,15 @@ class Model
     public static function getDIContainer()
     {
         if (null === self::$container) {
-            self::$container = ContainerBuilder::buildDevContainer();
+            var_dump(get_class($container));
+            self::$container = $container;
         }
 
         return self::$container;
+    }
+
+    public static function setDIContainer(\DI\Container $container)
+    {
+        self::$container = $container;
     }
 }
