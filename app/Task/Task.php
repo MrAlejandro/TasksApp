@@ -22,10 +22,6 @@ class Task
         $this->name = $name;
         $this->priority = $priority;
         $this->status = $status;
-
-        $this->init([
-            'name' => '<p>"test"</p>',
-        ]);
     }
 
     public function init(Array $taskData = [])
@@ -36,5 +32,15 @@ class Task
         $this->status->set(!empty($taskData['status']) ? $taskData['status'] : 0);
 
         return $this;
+    }
+
+    public function getPriorities()
+    {
+        return $this->priority->getList();
+    }
+
+    public function getStatuses()
+    {
+        return $this->status->getList();
     }
 }

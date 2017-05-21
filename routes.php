@@ -34,8 +34,14 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         $args = [$vars, 'TaskController', 'index'];
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
-    $r->addRoute('GET', '/tasks', function () { var_dump(func_get_args());  });
-    $r->addRoute('GET', '/task/{id:\d+}', function () { var_dump(func_get_args());  });
+
+    $r->addRoute('GET', '/task/create', function ($vars) {
+        $args = [$vars, 'TaskController', 'create'];
+        call_user_func_array('AppRoutes\dispatch_callback', $args);
+    });
+
+    /*$r->addRoute('GET', '/task/create', function () { var_dump(func_get_args());  });
+    $r->addRoute('GET', '/task/{id:\d+}', function () { var_dump(func_get_args());  });*/
 
     /* $r->addRoute('GET', '/tasks', function () { var_dump(func_get_args()); }); */
     // {id} must be a number (\d+)
