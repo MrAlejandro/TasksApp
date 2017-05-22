@@ -9,9 +9,6 @@ class TaskController extends Controller
 
     public function index()
     {
-        /*$task = Model::instance('task');
-        var_dump($task);
-        die;*/
 
         $this->view->assign([
             'page_title' => 'My page',
@@ -32,5 +29,27 @@ class TaskController extends Controller
         ]);
 
         $this->render('task/edit.tpl');
+    }
+
+    public function update()
+    {
+        $request = $_REQUEST;
+        $result = false;
+        $response = [];
+
+        if (empty($request['task_name'])) {
+            $response['message'] = __('task_name_cannot_be_empty');
+        } else {
+            $data['name'] = $request['task_name'];
+            $data['status'] = !empty($request['task_status']) ? $request['task_status'] : 0;
+            $data['priority'] = !empty($request['task_priority']) ? $request['task_priority'] : 0;
+            $data['tags'] = !empty($request['task_tags']) ? $request['task_tags'] : [];
+
+
+            $task = Model::instance('task');
+            $task->init($data);
+            echo var_dump($data, $task);
+            die;
+        }
     }
 }

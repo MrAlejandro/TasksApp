@@ -2,12 +2,12 @@
     <form action="{$view->url("task/create")}" method="POST" id="task_edit_form">
         <div class="form-group">
             <label for="task_name">{__("task_name")}</label>
-            <input type="text" class="form-control" id="task_name" />
+            <input type="text" class="form-control" id="task_name" name="task_name" value="" />
         </div>
 
         <div class="form-group">
             <label for="task_priority">{__("task_priority")}</label>
-            <select id="task_priority" class="form-control">
+            <select id="task_priority" class="form-control" name="task_priority">
                 {foreach from=$priorities key="priority_id" item="priority_name"}
                     <option value="{$priority_id}">{__($priority_name)}</option>
                 {/foreach}
@@ -16,7 +16,7 @@
 
         <div class="form-group">
             <label for="task_status">{__("task_status")}</label>
-            <select id="task_status" class="form-control">
+            <select id="task_status" class="form-control" name="task_status">
                 {foreach from=$statuses key="status_id" item="status_name"}
                     <option value="{$status_id}">{__($status_name)}</option>
                 {/foreach}
@@ -35,7 +35,7 @@
 
         <div id="tags_container">
             <div class="task__tags-containner hidden" id="tag_template">
-                <input type="hidden" name="task_tag[]" value="" disabled />
+                <input type="hidden" name="task_tags[]" value="" disabled />
                 <span class="task__tag-content">
                     <span class="glyphicon glyphicon-remove-sign task__tag-rmove-button" aria-hidden="true"></span>
                     <span class="task__tag-value"></span>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="button" class="btn btn-primary" id="save_task_button">{__("save")}</button>
         </div>
     </form>
 </div>

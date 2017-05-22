@@ -19,7 +19,7 @@ class TaskPriority
         if (null === $this->priority) {
             $result = true;
 
-            if (!empty($priority) && !empty($priorities[$priority])) {
+            if (!empty($priority) && !empty($this->priorities[$priority])) {
                 $this->priority = $priority;
             } else {
                 $this->priority = self::DEFAULT_PRIORITY;

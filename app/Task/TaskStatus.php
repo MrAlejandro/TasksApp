@@ -18,7 +18,7 @@ class TaskStatus
         if (null === $this->status) {
             $result = true;
 
-            if (!empty($priority) && !empty($statuses[$status])) {
+            if (!empty($status) && !empty($this->statuses[$status])) {
                 $this->status = $status;
             } else {
                 $this->status = self::DEFAULT_STATUS;

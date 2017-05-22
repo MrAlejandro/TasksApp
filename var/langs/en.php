@@ -20,6 +20,7 @@ return [
             'priority_high' => ['High'],
             'in_progress' => ['In progress'],
             'complete' => ['Complete'],
+            'save' => ['Save'],
         ],
     ],
 ];

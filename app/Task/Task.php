@@ -8,7 +8,6 @@ class Task
     protected $name;
     protected $priority;
     protected $status;
-
     protected $tags = [];
 
     public function __construct(

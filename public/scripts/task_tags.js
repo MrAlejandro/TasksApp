@@ -16,7 +16,9 @@
 
                 // set value into hidden input and the tag-vlaue element
                 tagTemplateClone.find('.task__tag-value').html(tagValue);
-                tagTemplateClone.find('input[name^="task_tag"]').val(tagValue);
+                tagTemplateClone.find('input[name^="task_tag"]')
+                    .prop('disabled', false)
+                    .val(tagValue);
 
                 // append new tag
                 $('#tags_container').append(tagTemplateClone);

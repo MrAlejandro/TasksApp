@@ -6,6 +6,6 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
-<!-- TODO: implement url retrieving functionality -->
 <script src="{$view->url("scripts/task_tags.js")}"></script>
+<script src="{$view->url("scripts/task_edit.js")}"></script>
 

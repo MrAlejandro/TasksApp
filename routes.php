@@ -40,6 +40,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
 
+    $r->addRoute('POST', '/task/create', function ($vars) {
+        $args = [$vars, 'TaskController', 'update'];
+        call_user_func_array('AppRoutes\dispatch_callback', $args);
+    });
+
     /*$r->addRoute('GET', '/task/create', function () { var_dump(func_get_args());  });
     $r->addRoute('GET', '/task/{id:\d+}', function () { var_dump(func_get_args());  });*/
 
