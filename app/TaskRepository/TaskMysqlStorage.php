@@ -10,8 +10,8 @@ class TaskMysqlStorage implements TaskStorageInterface
     public function __construct(\Eden\Mysql\Index $connection)
     {
         $this->connection = $connection;
-        $query  = 'SELECT * FROM cscart_users WHERE user_type = :admin';
-        $bind = [':admin' => 'A'];
-        var_dump($this->connection->query($query, $bind));
+        /* $query  = 'SELECT * FROM cscart_users WHERE user_type = :admin'; */
+        /* $bind = [':admin' => 'A']; */
+        /* var_dump($this->connection->query($query, $bind)); */
     }
 }

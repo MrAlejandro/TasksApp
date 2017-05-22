@@ -26,6 +26,4 @@ $container->set('config', $config);
 
 $container = App\Model::setDIContainer($container);
 
-new App\TaskRepository\TaskRepository();
-die;
 require_once 'routes.php';

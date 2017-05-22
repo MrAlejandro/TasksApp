@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'storage' => 'mysql', // mysql, files
+    'db' => [
+        'driver'    => 'mysql',
+        'host'      => 'localhost',
+        'database'  => 'db_name',
+        'username'  => 'db_user',
+        'password'  => 'db_password',
+        'charset'   => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix'    => '',
+        'port'      => 3306,
+    ],
     'db' => [
     ],
     'web' => [

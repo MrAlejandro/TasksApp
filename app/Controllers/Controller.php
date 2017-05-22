@@ -56,6 +56,7 @@ class Controller
 
         $this->view->assign($assignData);
         $this->view->display('index.tpl');
+        var_dump(4130461328);die;
     }
 
     protected function getDefaultTemplateName()
