@@ -1,7 +1,7 @@
 <?php
 namespace App\Task;
 
-class TaskPriority
+class TaskPriority implements Interfaces\TaskValueInterface
 {
     CONST DEFAULT_PRIORITY = 20;
 

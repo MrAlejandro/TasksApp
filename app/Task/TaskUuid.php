@@ -1,7 +1,7 @@
 <?php
 namespace App\Task;
 
-class TaskId
+class TaskUuid implements Interfaces\TaskValueInterface
 {
     const UUID_LENGTH = 36;
 

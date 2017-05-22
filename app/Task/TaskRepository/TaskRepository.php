@@ -1,5 +1,5 @@
 <?php
-namespace App\TaskRepository;
+namespace App\Task\TaskRepository;
 
 use App\Model;
 
@@ -15,7 +15,12 @@ class TaskRepository
             $className = 'task_' . strtolower($config['storage']) . '_storage';
             $this->storageDriver = Model::instance($className);
         } else {
-            throw new RuntimeException('Storage is undefined in the config');
+            throw new \RuntimeException('Storage is undefined in the config');
         }
+    }
+
+    public function getStorageDriver()
+    {
+        return $this->storageDriver;
     }
 }

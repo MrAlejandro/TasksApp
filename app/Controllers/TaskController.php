@@ -45,10 +45,18 @@ class TaskController extends Controller
             $data['priority'] = !empty($request['task_priority']) ? $request['task_priority'] : 0;
             $data['tags'] = !empty($request['task_tags']) ? $request['task_tags'] : [];
 
-
+            /** @var $task \App\Task\Task */
             $task = Model::instance('task');
             $task->init($data);
-            echo var_dump($data, $task);
+
+            /** @var $taskRepository \App\Task\TaskRepository\TaskRepository */
+            $taskRepository = Model::instance('task_repository');
+
+            $taskStorage = $taskRepository->getStorageDriver();
+            $result = $taskStorage->save($task);
+
+            //$taskRepository->save($task);
+            //var_dump($taskRepository, $data, $task);
             die;
         }
     }

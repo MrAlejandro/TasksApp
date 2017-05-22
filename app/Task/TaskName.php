@@ -1,7 +1,7 @@
 <?php
 namespace App\Task;
 
-class TaskName
+class TaskName implements Interfaces\TaskValueInterface
 {
     protected $name;
 

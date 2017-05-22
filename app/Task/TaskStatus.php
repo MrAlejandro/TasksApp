@@ -1,7 +1,7 @@
 <?php
 namespace App\Task;
 
-class TaskStatus
+class TaskStatus implements Interfaces\TaskValueInterface
 {
     CONST DEFAULT_STATUS = 1;
 

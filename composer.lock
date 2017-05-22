@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "be8ce201ecae9ae4770fe2caf5cde1ae",
+    "content-hash": "318735b402f42e8bad5c60101efad001",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -946,6 +946,52 @@
                 "phinx"
             ],
             "time": "2017-02-28T18:34:31+00:00"
+        },
+        {
+            "name": "simplon/mysql",
+            "version": "2.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fightbulc/simplon_mysql.git",
+                "reference": "5d33b0374dd6b543735648172aa3d383bf94f0d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fightbulc/simplon_mysql/zipball/5d33b0374dd6b543735648172aa3d383bf94f0d4",
+                "reference": "5d33b0374dd6b543735648172aa3d383bf94f0d4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Simplon\\Mysql\\": "src/",
+                    "Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tino Ehrich",
+                    "email": "tino@bigpun.me",
+                    "role": "developer"
+                }
+            ],
+            "description": "Simplon MySQL Library",
+            "homepage": "https://github.com/fightbulc/simplon_mysql",
+            "keywords": [
+                "db",
+                "manager",
+                "mysql",
+                "pdo"
+            ],
+            "time": "2017-04-24T08:15:00+00:00"
         },
         {
             "name": "smarty/smarty",
