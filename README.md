@@ -20,3 +20,5 @@ Apache settings
 
 chmod -R 777 var
 
+vendor/bin/phinx init
+add phinx.yml DB setting

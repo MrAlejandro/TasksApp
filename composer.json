@@ -5,6 +5,7 @@
         "php-di/php-di": "^5.4",
         "ramsey/uuid": "^3.6",
         "gettext/gettext": "^4.4",
-        "eden/mysql": "^4.0"
+        "eden/mysql": "^4.0",
+        "robmorgan/phinx": "^0.8.0"
     }
 }
