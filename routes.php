@@ -40,11 +40,21 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
 
-    $r->addRoute('POST', '/task/create', function ($vars) {
-        $args = [$vars, 'TaskController', 'update'];
+    $r->addRoute('GET', '/task/edit/{id:\d+}', function ($vars) {
+        $args = [$vars, 'TaskController', 'edit'];
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
 
+    $r->addRoute('POST', '/task/create', function ($vars) {
+        $args = [$vars, 'TaskController', 'save'];
+        call_user_func_array('AppRoutes\dispatch_callback', $args);
+    });
+
+
+    $r->addRoute('POST', '/task/update/{id:\d+}', function ($vars) {
+        $args = [$vars, 'TaskController', 'update'];
+        call_user_func_array('AppRoutes\dispatch_callback', $args);
+    });
     /*$r->addRoute('GET', '/task/create', function () { var_dump(func_get_args());  });
     $r->addRoute('GET', '/task/{id:\d+}', function () { var_dump(func_get_args());  });*/
 
@@ -60,9 +70,9 @@ $uri = $_SERVER['REQUEST_URI'];
 
 if (strpos('dispatch', $uri)) { // query style url
     // TODO: implement the logic
-} elseif (false !== $pos = strpos($uri, '?')) { // human readble url
+} elseif (false !== $pos = strpos($uri, '?')) { // human readable url
     // Strip query string (?foo=bar) and decode URI
-    $dispatch = substr($uri, 0, $pos);
+    // $uri = substr($uri, 0, $pos);
     $uri = rawurldecode($uri);
 }
 

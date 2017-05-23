@@ -8,6 +8,7 @@ return [
             'tasks_board' => ['Tasks board'],
             'tasks_list' => ['Tasks list'],
             'create_task' => ['Create task'],
+            'edit_task' => ['Edit task'],
             'task_name' => ['Name'],
             'task_priority' => ['Priority'],
             'task_status' => ['Status'],
@@ -24,6 +25,9 @@ return [
             'task_created' => ['New <a href="{task_url}" target="_blank">Task #{id}</a> was created successfully'],
             'task_creation_failed' => ['Task creation failed'],
             'task_name_cannot_be_empty' => ['Task name cannot be empty'],
+            'task_updated' => ['Task successfully updated'],
+            'task_update_failed' => ['Task update failed'],
+            'task_ids_mismatch' => ['Task ids mismatch'],
         ],
     ],
 ];

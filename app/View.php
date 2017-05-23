@@ -59,6 +59,9 @@ final class View extends Smarty
         $this->translator->loadTranslations(__DIR__ . '/../var/langs/en.php');
         $this->translator->register(); // make the __() function global
 
+        // disable notices output
+        $this->error_reporting = E_ALL & ~E_NOTICE;
+
         return $this;
     }
 }

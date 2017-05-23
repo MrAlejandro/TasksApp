@@ -3,7 +3,9 @@ namespace App\Task\Interfaces;
 
 interface TaskStorageInterface
 {
-    public function save(\App\Task\Interfaces\TaskInterface $task);
+    public function create(\App\Task\Interfaces\TaskInterface $task);
+
+    public function update(\App\Task\Interfaces\TaskInterface $task);
 
     public function saveCollection(Array $tasks);
 

@@ -27,6 +27,7 @@ class Task implements TaskInterface
 
     public function init(Array $taskData = [])
     {
+        $this->id = !empty($taskData['id']) ? intval($taskData['id']) : 0;
         $this->uuid->set(!empty($taskData['uuid']) ? $taskData['uuid'] : '');
         $this->name->set(!empty($taskData['name']) ? $taskData['name'] : '');
         $this->priority->set(!empty($taskData['priority']) ? $taskData['priority'] : 0);
