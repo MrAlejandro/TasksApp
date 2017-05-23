@@ -2,7 +2,6 @@
 namespace App\Task\TaskRepository;
 
 use App\Task\Interfaces\TaskStorageInterface;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 class TaskMysqlStorage implements TaskStorageInterface
 {

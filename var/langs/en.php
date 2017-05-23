@@ -21,6 +21,9 @@ return [
             'in_progress' => ['In progress'],
             'complete' => ['Complete'],
             'save' => ['Save'],
+            'task_created' => ['New <a href="{task_url}" target="_blank">Task #{id}</a> was created successfully'],
+            'task_creation_failed' => ['Task creation failed'],
+            'task_name_cannot_be_empty' => ['Task name cannot be empty'],
         ],
     ],
 ];

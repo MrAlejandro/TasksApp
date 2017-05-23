@@ -53,11 +53,23 @@ class TaskController extends Controller
             $taskRepository = Model::instance('task_repository');
 
             $taskStorage = $taskRepository->getStorageDriver();
-            $result = $taskStorage->save($task);
+            $id = $taskStorage->save($task);
+            $result = (bool) $id;
 
-            //$taskRepository->save($task);
-            //var_dump($taskRepository, $data, $task);
-            die;
+            if ($id) {
+                $response['message'] = __(
+                    'task_created',
+                    [
+                        '{id}' => $id,
+                        '{task_url}' => $this->view->url("/task/edit/{$id}"),
+                    ]);
+            } else {
+                $response['message'] = __('task_creation_failed');
+            }
         }
+
+        $response['success'] = $result;
+
+        $this->sendJsonResponse($response);
     }
 }

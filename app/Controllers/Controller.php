@@ -75,4 +75,11 @@ class Controller
         return $templateName;
 
     }
+
+    protected function sendJsonResponse(Array $data = [])
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
 }
