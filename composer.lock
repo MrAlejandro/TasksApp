@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e19dc7ef83dd70689ecae9c3fac0ee98",
+    "content-hash": "3b2cdb0f5b35c4e98f0f19a31136b0eb",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -638,52 +638,6 @@
             "time": "2017-02-28T18:34:31+00:00"
         },
         {
-            "name": "simplon/mysql",
-            "version": "2.1.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fightbulc/simplon_mysql.git",
-                "reference": "5d33b0374dd6b543735648172aa3d383bf94f0d4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fightbulc/simplon_mysql/zipball/5d33b0374dd6b543735648172aa3d383bf94f0d4",
-                "reference": "5d33b0374dd6b543735648172aa3d383bf94f0d4",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pdo": "*",
-                "php": ">=5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Simplon\\Mysql\\": "src/",
-                    "Test\\": "test/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tino Ehrich",
-                    "email": "tino@bigpun.me",
-                    "role": "developer"
-                }
-            ],
-            "description": "Simplon MySQL Library",
-            "homepage": "https://github.com/fightbulc/simplon_mysql",
-            "keywords": [
-                "db",
-                "manager",
-                "mysql",
-                "pdo"
-            ],
-            "time": "2017-04-24T08:15:00+00:00"
-        },
-        {
             "name": "smarty/smarty",
             "version": "v3.1.31",
             "source": {
@@ -1074,6 +1028,44 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2017-05-01T14:55:58+00:00"
+        },
+        {
+            "name": "workerman/mysql",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/walkor/mysql.git",
+                "reference": "745d62528372e0ca7f1be05f029493b9fce2dc76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/walkor/mysql/zipball/745d62528372e0ca7f1be05f029493b9fce2dc76",
+                "reference": "745d62528372e0ca7f1be05f029493b9fce2dc76",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "ext-pdo_mysql": "*",
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Workerman\\MySQL\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Long-living MySQL connection for daemon.",
+            "homepage": "http://www.workerman.net",
+            "keywords": [
+                "mysql",
+                "pdo",
+                "pdo_mysql"
+            ],
+            "time": "2017-03-18T01:48:33+00:00"
         }
     ],
     "packages-dev": [],

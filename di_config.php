@@ -5,16 +5,18 @@ if (
     || empty($config['db']['database'])
     || empty($config['db']['username'])
     || !isset($config['db']['password'])
+    || empty($config['db']['port'])
 ) {
     throw new RuntimeException('Invalid DB settings in config file');
 }
 
 return [
-    Simplon\Mysql\Mysql::class => DI\object()
-        ->constructor((new  Simplon\Mysql\PDOConnector(
+    Workerman\MySQL\Connection::class => DI\object()
+        ->constructor(
             $config['db']['host'],
+            $config['db']['port'],
             $config['db']['username'],
             $config['db']['password'],
             $config['db']['database']
-            ))->connect('utf8mb4')),
+        ),
 ];

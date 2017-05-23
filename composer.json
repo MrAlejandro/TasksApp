@@ -6,6 +6,6 @@
         "ramsey/uuid": "^3.6",
         "gettext/gettext": "^4.4",
         "robmorgan/phinx": "^0.8.0",
-        "simplon/mysql": "^2.1"
+        "workerman/mysql": "^1.0"
     }
 }

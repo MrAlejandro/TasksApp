@@ -7,7 +7,7 @@ class TaskMysqlStorage implements TaskStorageInterface
 {
     protected $db;
 
-    public function __construct(\Simplon\Mysql\Mysql $db)
+    public function __construct(\Workerman\MySQL\Connection $db)
     {
         $this->db = $db;
     }
@@ -19,8 +19,12 @@ class TaskMysqlStorage implements TaskStorageInterface
 
         try {
             unset($data['id']);
-            $id = $this->db->insert('task', $data);
-        } catch (Exception $e) {
+
+            $id = $this->db
+                ->insert('task')
+                ->cols($data)
+                ->query();
+        } catch (\Exception $e) {
         }
 
         return $id;
