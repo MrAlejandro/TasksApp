@@ -5,6 +5,9 @@ use App\Task\Interfaces\TaskStorageInterface;
 
 class TaskMysqlStorage implements TaskStorageInterface
 {
+    const DEFAULT_PER_PAGE = 10;
+    const DEFAULT_ORDER_BY = 'priority';
+
     protected $db;
 
     public function __construct(\Workerman\MySQL\Connection $db)
@@ -81,8 +84,13 @@ class TaskMysqlStorage implements TaskStorageInterface
         return $taskData;
     }
 
-    public function getCollection(Array $ids = [])
+    public function getCollection($page = 1, $limit = self::DEFAULT_PER_PAGE, $sort = self::DEFAULT_ORDER_BY)
     {
-
+        return $this->db->select('id,name,status,priority,tags')
+            ->from('task')
+            ->offset(0)
+            ->limit($limit)
+            ->orderByDESC([$sort])
+            ->query();
     }
 }

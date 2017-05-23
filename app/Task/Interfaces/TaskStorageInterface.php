@@ -11,5 +11,5 @@ interface TaskStorageInterface
 
     public function get($id);
 
-    public function getCollection(Array $ids);
+    public function getCollection($page, $limit, $sort);
 }

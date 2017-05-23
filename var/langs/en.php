@@ -28,6 +28,11 @@ return [
             'task_updated' => ['Task successfully updated'],
             'task_update_failed' => ['Task update failed'],
             'task_ids_mismatch' => ['Task ids mismatch'],
+            'id' => ['ID'],
+            'name' => ['Name'],
+            'status' => ['Status'],
+            'priority' => ['Priority'],
+            'tags' => ['Tags'],
         ],
     ],
 ];
