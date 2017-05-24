@@ -45,24 +45,16 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
 
+    // POST requests
     $r->addRoute('POST', '/task/create', function ($vars) {
         $args = [$vars, 'TaskController', 'save'];
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
 
-
     $r->addRoute('POST', '/task/update/{id:\d+}', function ($vars) {
         $args = [$vars, 'TaskController', 'update'];
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
-    /*$r->addRoute('GET', '/task/create', function () { var_dump(func_get_args());  });
-    $r->addRoute('GET', '/task/{id:\d+}', function () { var_dump(func_get_args());  });*/
-
-    /* $r->addRoute('GET', '/tasks', function () { var_dump(func_get_args()); }); */
-    // {id} must be a number (\d+)
-    /* $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler'); */
-    // The /{title} suffix is optional
-    /* $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler'); */
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -72,7 +64,7 @@ if (strpos('dispatch', $uri)) { // query style url
     // TODO: implement the logic
 } elseif (false !== $pos = strpos($uri, '?')) { // human readable url
     // Strip query string (?foo=bar) and decode URI
-    // $uri = substr($uri, 0, $pos);
+    $uri = substr($uri, 0, $pos);
     $uri = rawurldecode($uri);
 }
 

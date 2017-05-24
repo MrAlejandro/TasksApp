@@ -88,12 +88,23 @@ class TaskMysqlStorage implements TaskStorageInterface
 
     public function getCollection($page = 1, $limit = self::DEFAULT_PER_PAGE, $sort = [])
     {
-        $tasksData = [];
+        $result = [
+            'tasks_data' => [],
+            'pagination' => [],
+        ];
 
         try {
+            $total = $this->db->select('COUNT(*)')->from('task')->column();
+            $total = !empty($total[0]) ? $total[0] : 0;
+
+            $limit = $limit ? (int) $limit : self::DEFAULT_PER_PAGE;
+            $page = $page ? (int) $page : 1;
+            $offset = ($page - 1) * $limit;
+            $pages = ceil($total / $limit);
+
             $tasksData = $this->db->select('id,name,status,priority,tags')
                 ->from('task')
-                ->offset(0)
+                ->offset($offset)
                 ->limit($limit)
                 ->orderByASC(!empty($sort['asc']) ? $sort['asc'] : [self::DEFAULT_ORDER_ASC])
                 ->orderByDESC(!empty($sort['desc']) ? $sort['desc'] : [self::DEFAULT_ORDER_DESC])
@@ -113,9 +124,20 @@ class TaskMysqlStorage implements TaskStorageInterface
 
                 $tasksData[$key]['tags'] = $taskData['tags'];
             }
-        } catch (Exception $e) {
+
+            $result['tasks_data'] = $tasksData;
+            $result['pagination'] = [
+                'page' => $page,
+                'total_items' => $total,
+                'items_per_page' => $limit,
+                'pages' => $pages,
+                'prev_page' => $page - 1,
+                'next_page' => $page + 1,
+            ];
+        } catch (\Exception $e) {
+            // TODO: implement exception handling logic
         }
 
-        return $tasksData;
+        return array_values($result);
     }
 }

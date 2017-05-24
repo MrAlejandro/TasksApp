@@ -9,11 +9,14 @@ class TaskController extends Controller
 
     public function index()
     {
+        $page = !empty($_REQUEST['page']) ? (int) $_REQUEST['page'] : 1;
+        $items_per_page = !empty($_REQUEST['items_per_page']) ? (int) $_REQUEST['items_per_page'] : 10;
+
         /** @var $taskRepository \App\Task\TaskRepository\TaskRepository */
         $taskRepository = Model::instance('task_repository');
 
         $taskStorage = $taskRepository->getStorageDriver();
-        $tasksData = $taskStorage->getCollection();
+        list($tasksData, $pagination) = $taskStorage->getCollection($page, $items_per_page);
 
         /** @var $task \App\Task\Task */
         $task = Model::instance('task');
@@ -23,6 +26,7 @@ class TaskController extends Controller
             'tasks' => $tasksData,
             'statuses' => $task->getStatuses(),
             'priorities' => $task->getPriorities(),
+            'pagination' => $pagination,
         ]);
 
         $this->render();
