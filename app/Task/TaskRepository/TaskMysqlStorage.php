@@ -6,7 +6,9 @@ use App\Task\Interfaces\TaskStorageInterface;
 class TaskMysqlStorage implements TaskStorageInterface
 {
     const DEFAULT_PER_PAGE = 10;
-    const DEFAULT_ORDER_BY = 'priority';
+    const DEFAULT_ORDER_DESC = 'priority';
+    const DEFAULT_ORDER_ASC = 'status';
+    const TAGS_TO_DISPLAY = 3;
 
     protected $db;
 
@@ -84,13 +86,36 @@ class TaskMysqlStorage implements TaskStorageInterface
         return $taskData;
     }
 
-    public function getCollection($page = 1, $limit = self::DEFAULT_PER_PAGE, $sort = self::DEFAULT_ORDER_BY)
+    public function getCollection($page = 1, $limit = self::DEFAULT_PER_PAGE, $sort = [])
     {
-        return $this->db->select('id,name,status,priority,tags')
-            ->from('task')
-            ->offset(0)
-            ->limit($limit)
-            ->orderByDESC([$sort])
-            ->query();
+        $tasksData = [];
+
+        try {
+            $tasksData = $this->db->select('id,name,status,priority,tags')
+                ->from('task')
+                ->offset(0)
+                ->limit($limit)
+                ->orderByASC(!empty($sort['asc']) ? $sort['asc'] : [self::DEFAULT_ORDER_ASC])
+                ->orderByDESC(!empty($sort['desc']) ? $sort['desc'] : [self::DEFAULT_ORDER_DESC])
+                ->query();
+
+            foreach ($tasksData as $key => $taskData) {
+                $taskData['tags'] = !empty($taskData['tags']) ? json_decode($taskData['tags'], true) : [];
+                $tagsQuantity = count($taskData['tags']);
+
+                if ($tagsQuantity) {
+                    array_splice($taskData['tags'], self::TAGS_TO_DISPLAY);
+
+                    if ($tagsQuantity > self::TAGS_TO_DISPLAY) {
+                        $taskData['tags']['total'] = $tagsQuantity;
+                    }
+                }
+
+                $tasksData[$key]['tags'] = $taskData['tags'];
+            }
+        } catch (Exception $e) {
+        }
+
+        return $tasksData;
     }
 }

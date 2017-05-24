@@ -3,7 +3,7 @@ namespace App\Task;
 
 class TaskStatus implements Interfaces\TaskValueInterface
 {
-    CONST DEFAULT_STATUS = 1;
+    const DEFAULT_STATUS = 1;
 
     protected $status;
     protected $statuses = [

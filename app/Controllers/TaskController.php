@@ -9,17 +9,20 @@ class TaskController extends Controller
 
     public function index()
     {
-
-
         /** @var $taskRepository \App\Task\TaskRepository\TaskRepository */
         $taskRepository = Model::instance('task_repository');
 
         $taskStorage = $taskRepository->getStorageDriver();
         $tasksData = $taskStorage->getCollection();
 
+        /** @var $task \App\Task\Task */
+        $task = Model::instance('task');
+
         $this->view->assign([
             'page_title' => __('tasks_list'),
             'tasks' => $tasksData,
+            'statuses' => $task->getStatuses(),
+            'priorities' => $task->getPriorities(),
         ]);
 
         $this->render();
