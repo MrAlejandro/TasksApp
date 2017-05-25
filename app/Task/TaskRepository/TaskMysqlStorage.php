@@ -38,18 +38,18 @@ class TaskMysqlStorage implements TaskStorageInterface
     public function update(\App\Task\Interfaces\TaskInterface $task)
     {
         $data = $task->getSaveData();
-        $id = !empty($data['id']) ? $data['id'] : 0;
+        $uuid = !empty($data['uuid']) ? $data['uuid'] : 0;
         $result = false;
 
-        if ($id) {
+        if ($uuid) {
             try {
                 unset($data['id'], $data['uuid']);
 
                 $this->db
                     ->update('task')
                     ->cols($data)
-                    ->where('id = :id')
-                    ->bindValues(['id' => $id])
+                    ->where('uuid = :uuid')
+                    ->bindValues(['uuid' => $uuid])
                     ->query();
 
                 $result = true;
@@ -65,17 +65,16 @@ class TaskMysqlStorage implements TaskStorageInterface
 
     }
 
-    public function get($id = 0)
+    public function get($uuid = '')
     {
-        $id = intval($id);
         $taskData = [];
 
-        if (!empty($id)) {
+        if (!empty($uuid)) {
             $taskData = $this->db
                 ->select('*')
                 ->from('task')
-                ->where('id = :id')
-                ->bindValues(['id' => $id])
+                ->where('uuid = :uuid')
+                ->bindValues(['uuid' => $uuid])
                 ->row();
         }
 
@@ -102,7 +101,7 @@ class TaskMysqlStorage implements TaskStorageInterface
             $offset = ($page - 1) * $limit;
             $pages = ceil($total / $limit);
 
-            $tasksData = $this->db->select('id,name,status,priority,tags')
+            $tasksData = $this->db->select('*')
                 ->from('task')
                 ->offset($offset)
                 ->limit($limit)
@@ -133,11 +132,47 @@ class TaskMysqlStorage implements TaskStorageInterface
                 'pages' => $pages,
                 'prev_page' => $page - 1,
                 'next_page' => $page + 1,
+                'pagination' => $this->getPagination($pages, $page),
             ];
         } catch (\Exception $e) {
             // TODO: implement exception handling logic
         }
 
         return array_values($result);
+    }
+
+    public function getPagination($pages, $page)
+    {
+        $pages = range(1, $pages);
+
+        if (count($pages) == 11) {
+            return $pages;
+        }
+
+        $leftBound = max(1, $page - 4);
+        $rightBound = min(count($pages), $page + 4);
+        $offset = ($rightBound - $leftBound) + 1;
+
+        $pagination = array_slice($pages, $leftBound-1, $offset);
+        reset($pagination);
+        reset($pages);
+
+        if ($pagination[0] != $pages[0] && $pagination[0] != $pages[1]) {
+            array_unshift($pagination, 1, -1);
+        }
+
+        if ($pagination[0] != $pages[0]) {
+            array_unshift($pagination, 1);
+        }
+
+        if (end($pagination) != end($pages) && end($pagination) != prev($pages)) {
+            array_push($pagination, 0, end($pages));
+        }
+
+        if (end($pagination) != end($pages)) {
+            array_push($pagination, end($pages));
+        }
+
+        return $pagination;
     }
 }

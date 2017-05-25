@@ -29,7 +29,12 @@ class TaskController extends Controller
             'pagination' => $pagination,
         ]);
 
-        $this->render();
+        if (!empty($_REQUEST['is_ajax'])) {
+            $html = $this->view->fetch('task/index.tpl');
+            $this->sendJsonResponse(['html' => $html]);
+        }
+
+        $this->render('task/index.tpl');
     }
 
     public function create()
@@ -72,12 +77,13 @@ class TaskController extends Controller
             $id = $taskStorage->create($task);
             $result = (bool) $id;
 
-            if ($id) {
+            $uuid = $task->getUuid();
+            if ($id && $uuid) {
                 $response['message'] = __(
                     'task_created',
                     [
                         '{id}' => $id,
-                        '{task_url}' => $this->view->url("/task/edit/{$id}"),
+                        '{task_url}' => $this->view->url("/task/edit/{$uuid}"),
                     ]);
             } else {
                 $response['message'] = __('task_creation_failed');
@@ -89,18 +95,17 @@ class TaskController extends Controller
         $this->sendJsonResponse($response);
     }
 
-    public function update($id = 0)
+    public function update($uuid = 0)
     {
         $request = $_REQUEST;
-        $id = intval($id);
         $result = false;
         $response = [];
 
-        if (!empty($request['task_id']) && $id == $id) {
+        if (!empty($request['task_uuid']) && $uuid == $request['task_uuid']) {
             if (empty($request['task_name'])) {
                 $response['message'] = __('task_name_cannot_be_empty');
             } else {
-                $data['id'] = $request['task_id'];
+                $data['uuid'] = $uuid;
                 $data['name'] = $request['task_name'];
                 $data['status'] = !empty($request['task_status']) ? $request['task_status'] : 0;
                 $data['priority'] = !empty($request['task_priority']) ? $request['task_priority'] : 0;
@@ -131,16 +136,16 @@ class TaskController extends Controller
         $this->sendJsonResponse($response);
     }
 
-    public function edit($id = 0)
+    public function edit($uuid = 0)
     {
         $result = false;
 
-        if (!empty($id)) {
+        if (!empty($uuid)) {
             /** @var $taskRepository \App\Task\TaskRepository\TaskRepository */
             $taskRepository = Model::instance('task_repository');
             $taskStorage = $taskRepository->getStorageDriver();
 
-            $taskData = $taskStorage->get($id);
+            $taskData = $taskStorage->get($uuid);
 
             if (!empty($taskData)) {
                 $task = Model::instance('task');
@@ -150,7 +155,7 @@ class TaskController extends Controller
                     'statuses' => $task->getStatuses(),
                     'priorities' => $task->getPriorities(),
                     'task_data' => $taskData,
-                    'edit_form_url' => $this->view->url("task/update/{$id}"),
+                    'edit_form_url' => $this->view->url("task/update/{$uuid}"),
                 ]);
 
                 $result = true;

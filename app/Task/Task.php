@@ -64,6 +64,10 @@ class Task implements TaskInterface
         ];
     }
 
+    public function getUuid()
+    {
+     return $this->uuid->get();
+    }
     protected function validateTags(Array $tags = [])
     {
         return array_map(function ($tag) {

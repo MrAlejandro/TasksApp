@@ -40,7 +40,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
 
-    $r->addRoute('GET', '/task/edit/{id:\d+}', function ($vars) {
+    $r->addRoute('GET', '/task/edit/{uuid: .+}', function ($vars) {
         $args = [$vars, 'TaskController', 'edit'];
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
@@ -51,7 +51,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });
 
-    $r->addRoute('POST', '/task/update/{id:\d+}', function ($vars) {
+    $r->addRoute('POST', '/task/update/{uuid: .+}', function ($vars) {
         $args = [$vars, 'TaskController', 'update'];
         call_user_func_array('AppRoutes\dispatch_callback', $args);
     });

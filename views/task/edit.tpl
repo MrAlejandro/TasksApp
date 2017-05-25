@@ -1,6 +1,6 @@
 <div class="jumbotron">
     <form action="{$edit_form_url}" method="POST" id="task_edit_form">
-        <input type="hidden" name="task_id" value="{$task_data.id}" />
+        <input type="hidden" name="task_uuid" value="{$task_data.uuid}" />
 
         <div class="form-group">
             <label for="task_name">{__("task_name")}</label>

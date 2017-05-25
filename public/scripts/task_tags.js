@@ -15,7 +15,7 @@
                     .removeClass('hidden');
 
                 // set value into hidden input and the tag-vlaue element
-                tagTemplateClone.find('.task__tag-value').html(tagValue);
+                tagTemplateClone.find('.task__tag-value').text(tagValue);
                 tagTemplateClone.find('input[name^="task_tag"]')
                     .prop('disabled', false)
                     .val(tagValue);
@@ -50,4 +50,4 @@
         applyNewTagAdditionHandler();
         applyTagRemoveHandler();
     });
-})($);
+})(jQuery);
