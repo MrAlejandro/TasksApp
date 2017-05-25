@@ -4,8 +4,8 @@
 $loader = require_once(__DIR__ . '/vendor/autoload.php');
 
 // cusctom classes mapping
-$autoloadMap = require_once(__DIR__ . '/autoload_map.php');
-$classesMap = require_once(__DIR__ . '/classes_map.php');
+$autoloadMap = require_once(__DIR__ . '/map_autoload.php');
+$classesMap = require_once(__DIR__ . '/map_classes.php');
 
 // global config
 $config = require_once(__DIR__ . '/config.php');
