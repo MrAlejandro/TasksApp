@@ -31,7 +31,7 @@
 
 **Installation**
 1. run ```php composer.phar update```
-2. rename ```config.php.dist``` to ```config.php``` and add settings
+2. run ```cp config.php.dist config.php``` and add settings
 3. run ```vendor/bin/phinx init``` and add DB settings to the ```phinx.yml``` created in the root folder
 4. run ```chmod -R 777 var```
 5. apply migration ```vendor/bin/phinx migrate```
