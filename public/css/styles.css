@@ -1,0 +1,61 @@
+.task__tag-content {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.task__tags-containner .glyphicon-tags {
+    positon: relative;
+    right: -3px;
+    top: 15px
+}
+
+.task__tags-containner .glyphicon-remove-sign {
+    cursor: pointer;
+}
+
+.task__tags-containner {
+    display: inline-block;
+    margin: 0 10px 20px 0px;
+}
+
+#tags_container {
+    margin-bottom: 20px;
+}
+
+#overlay {
+    background: grey;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    opacity: .2;
+    display: none;
+}
+
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    display: none;
+    z-index: 999;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+span.page-link {
+    cursor: pointer;
+}
