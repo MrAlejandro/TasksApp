@@ -1,8 +1,14 @@
- TasksApp
+# TasksApp
 
-Apache settings
+**Requirements**
+1. Apache + mod_rewrite
 
-/etc/apache2/extra/httpd-vhosts.conf
+**Apache settings**
+
+```
+/etc/apache2/extra/httpd-vhosts.conf:
+```
+```
 <VirtualHost *:80>
     DocumentRoot "/Users/Alex/Sites/TasksApp/public"
     ServerName tasks.local
@@ -14,11 +20,18 @@ Apache settings
         Allow from all
     </Directory>
 </VirtualHost>
+```
 
-/ect/hosts
+```
+/ect/hosts:
+```
+```
 127.0.0.1       tasks.local www.tasks.local
+```
 
-chmod -R 777 var
-
-vendor/bin/phinx init
-add phinx.yml DB setting
+**Installation**
+1. run ```php composer.phar update```
+2. rename ```config.php.dist``` to ```config.php``` and add settings
+3. run ```vendor/bin/phinx init``` and add DB settings to the ```phinx.yml``` created in the root folder
+4. run ```chmod -R 777 var```
+5. apply migration ```vendor/bin/phinx migrate```
